@@ -18,7 +18,7 @@ class Post(models.Model):
     excerpt = models.CharField(max_length=100, blank=True)
     created_time = models.DateTimeField()
     modified_time = models.DateTimeField()
-    author = models.ForeignKey(User)
+    #author = models.ForeignKey(User)
     category = models.ForeignKey(Category, null=True)
     views = models.PositiveIntegerField(default=0)
 

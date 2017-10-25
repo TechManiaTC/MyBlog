@@ -20,10 +20,39 @@
 
        <div class="blog-post">
          <!-- <h2 class="blog-post-title">{{ post.title }}</h2> -->
-         <p class="blog-post-meta">{{ post.created_time }} by <a href="#">{{ post.author }}</a></p>
+         <p class="blog-post-meta">{{ post.created_time }} by <a href="#">{{ user.username }}</a></p>
          <div class="entry-content clearfix">
            {{ post.body|safe }}
          </div>
        </div><!-- /.blog-post -->
+       <form action="{% url 'comments:post_comment' post.pk %}" method="post" class="comment-form">
+         {% csrf_token %}
+         <div class="row">
+           <div class="col-md-12">
+             <label for="{{ form.text.id_for_label }}">评论：</label>
+             {{ form.text }}
+             {{ form.text.errors }}
+             <button type="submit" class="comment-btn">发表</button>
+           </div>
+         </div>    <!-- row -->
+       </form>
 
+    <div class="comment-list-panel">
+       <h3>评论列表，共 <span>{{ post.comment_set.count }}</span> 条评论</h3>
+       <hr>
+       <ul class="comment-list list-unstyled">
+         {% for comment in comment_list %}
+         <li class="comment-item">
+           <span class="nickname">{{ user.username }}</span>
+           <div class="text">
+             {{ comment.text }}
+           </div>
+           <h5><time class="submit-date">{{ comment.created_time }}</time></h5>
+         </li>
+         <hr>
+         {% empty %}
+         暂无评论
+         {% endfor %}
+       </ul>
+    </div>
 {% endblock main %}

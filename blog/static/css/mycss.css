@@ -12,3 +12,14 @@ line-height:30px;
 .blog-post-meta{
   padding-top:10px;
 }
+.text {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.comment-list-panel {
+  margin-top: 50px;
+}
+.comment-btn {
+  margin-top: 10px;
+  
+}
